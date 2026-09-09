@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimnim punyaaaaaa!!</title>
+  <meta name="description"
+    content="A pastoral cottagecore fairytale birthday web experience created with love for Hanim.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Background Music Audio Element -->
+  <audio id="bg-audio" loop src="./assets/bg-music.mp3"></audio>
+
+  <!-- iOS Safe Welcome Prompt Overlay -->
+  <div class="welcome-overlay" id="welcome-overlay">
+    <div class="welcome-card">
+      <div class="welcome-flower">🌸 ✨ 🌸</div>
+      <h1 class="welcome-title">Hi there!!</h1>
+      <p class="welcome-subtitle">"Enter a world where dreams dance under starlight..."</p>
+      <button class="welcome-btn" id="welcome-btn">Silakan masuk tuan puterii</button>
+    </div>
+  </div>
+
+  <!-- Soft Dappled Sunlight Overlay -->
+  <div class="sunlight-overlay"></div>
+
+  <!-- Global Backdrop Blur Layer for Modals -->
+  <div class="modal-backdrop-blur" id="modal-backdrop-blur"></div>
+
+  <!-- Vintage OS Top Taskbar -->
+  <header class="os-taskbar">
+    <div class="taskbar-brand">
+      <div class="brand-icon">✿</div>
+      <span>nimnim's beday!!!</span>
+    </div>
+
+    <ul class="taskbar-menu">
+      <li class="taskbar-menu-item" data-window="home">Home</li>
+      <li class="taskbar-menu-item" data-window="window-letter">Letter</li>
+      <li class="taskbar-menu-item" data-window="window-album">Album</li>
+      <li class="taskbar-menu-item" data-window="window-calendar">Calendar & Cake</li>
+      <li class="taskbar-menu-item" data-window="window-finder">Finder</li>
+    </ul>
+
+    <div class="taskbar-right">
+      <!-- Persistent Audio Controller Widget -->
+      <div class="audio-widget" id="audio-widget" title="Click to toggle music">
+        <div class="vinyl-disk" id="vinyl-disk"></div>
+        <div class="sound-waves" id="sound-waves">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
+        <span class="audio-label" id="audio-label">Music Off</span>
+      </div>
+
+      <div class="taskbar-clock" id="taskbar-clock-text">12:00 PM</div>
+    </div>
+  </header>
+
+  <!-- Main Desktop Viewport -->
+  <main class="desktop-viewport">
+
+    <!-- VIEW 1: Interactive Desktop Landing Page (Home) -->
+    <section class="landing-view" id="landing-view">
+      <div class="landing-header">
+        <h1 class="storybook-title">Once upon a Birthday</h1>
+        <p class="storybook-subtitle">
+          "Enter a world where dreams dance under starlight and a birthday wish comes to life for Hanim..."
+        </p>
+      </div>
+
+      <!-- Desktop Hotspot Icons Container -->
+      <div class="desktop-icons-container">
+        <!-- Hotspot 1: Flower Icon -> Letter -->
+        <div class="desktop-icon-card" data-window="window-letter" id="icon-letter">
+          <div class="icon-badge">🌸</div>
+          <div class="icon-title">Warkah</div>
+          <div class="icon-subtitle">Warkah kiriman</div>
+        </div>
+
+        <!-- Hotspot 2: Red Box Icon -> Calendar & Cake -->
+        <div class="desktop-icon-card" data-window="window-calendar" id="icon-calendar">
+          <div class="icon-badge">🎂</div>
+          <div class="icon-title">TeruntukMu</div>
+          <div class="icon-subtitle">Manisan</div>
+        </div>
+
+        <!-- Hotspot 3: 'e' Browser Icon -> Album -->
+        <div class="desktop-icon-card" data-window="window-album" id="icon-album">
+          <div class="icon-badge">📸</div>
+          <div class="icon-title">Seketul Pwencess</div>
+          <div class="icon-subtitle">SINIII!!!</div>
+        </div>
+
+        <!-- Hotspot 4: Magnifier Icon -> Finder -->
+        <div class="desktop-icon-card" data-window="window-finder" id="icon-finder">
+          <div class="icon-badge">🔍</div>
+          <div class="icon-title">Outro</div>
+          <div class="icon-subtitle">Made for Hanim</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: Animated Wax-Seal Letter Window -->
+    <div class="app-window" id="window-letter">
+      <div class="window-header">
+        <div class="window-title-group">
+          <span>✉️</span>
+          <span class="window-title-text">Warkah rasmi</span>
+        </div>
+        <div class="window-controls">
+          <div class="window-btn btn-min"></div>
+          <div class="window-btn btn-max"></div>
+          <div class="window-btn btn-close" title="Close">✕</div>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="envelope-view-container">
+          <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope-body">
+              <div class="envelope-back"></div>
+
+              <div class="envelope-letter-preview" id="envelope-letter-preview">
+                <div class="letter-preview-heading">Dear Hanim Insyirah</div>
+                <div class="letter-preview-snippet">
+                  May the skies above you always remain gentle,
+                  and may the sea carry away every sorrow that finds its way to your shore.
+                </div>
+              </div>
+
+              <div class="envelope-pocket">
+                <div class="pocket-left"></div>
+                <div class="pocket-right"></div>
+                <div class="pocket-bottom"></div>
+              </div>
+
+              <div class="envelope-top-flap"></div>
+
+              <!-- Wax Seal Button with Floral / H Initial -->
+              <button class="wax-seal-btn" id="wax-seal-btn" title="Tap to unseal Hanim's letter">H</button>
+            </div>
+          </div>
+
+          <div class="seal-hint-text">Bukakk laaaa hiihihihi!! ✨</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: "Same Energy" Scrapbook Album Window -->
+    <div class="app-window" id="window-album">
+      <div class="window-header">
+        <div class="window-title-group">
+          <span>📸</span>
+          <span class="window-title-text">Seketul Hanim telah menetas :P</span>
+        </div>
+        <div class="window-controls">
+          <div class="window-btn btn-min"></div>
+          <div class="window-btn btn-max"></div>
+          <div class="wi  ndow-btn btn-close" title="Close">✕</div>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="album-view-container">
+          <div class="scrapbook-header">
+            <h2 class="scrapbook-headline">Belongs to Bday Girl</h2>
+            <div class="scrapbook-subtitle">Just more like in my opinion (SINCERELY!!) </div>
+          </div>
+
+          <div class="album-photos-grid" id="album-photos-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: September 2026 Calendar & Interactive Birthday Cake Window -->
+    <div class="app-window" id="window-calendar">
+      <div class="window-header">
+        <div class="window-title-group">
+          <span>🎂</span>
+          <span class="window-title-text">You may have the virtual cake!!</span>
+        </div>
+        <div class="window-controls">
+          <div class="window-btn btn-min"></div>
+          <div class="window-btn btn-max"></div>
+          <div class="window-btn btn-close" title="Close">✕</div>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="calendar-view-container">
+          <div class="calendar-header">
+            <h2 class="calendar-title">Hanim's Birthday Celebration</h2>
+          </div>
+
+          <!-- September 2026 Mini Storybook Calendar -->
+          <div class="calendar-grid-card">
+            <div class="calendar-month-title">September 2026</div>
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <!-- September 10th Highlighted Birthday -->
+                  <td class="birthday-cell" title="Hanim's Birthday!">10</td>
+                  <td>11</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>14</td>
+                  <td>15</td>
+                  <td>16</td>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>19</td>
+                </tr>
+                <tr>
+                  <td>20</td>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+                <tr>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Interactive Cottagecore Cake & Blow-Out Candle -->
+          <div class="cake-section-card">
+            <div class="cake-instruction" id="cake-instruction">
+              ✨ Tap the candle to make a wish & blow it out! ✨
+            </div>
+
+            <div class="cake-container" id="cake-container" title="Tap candle to blow it out!">
+              <svg class="cake-svg" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                <!-- Plate -->
+                <ellipse cx="100" cy="165" rx="85" ry="12" fill="#E2D4BF" stroke="#8A9A86" stroke-width="3" />
+
+                <!-- Bottom Cake Tier -->
+                <path d="M 30,120 Q 100,140 170,120 L 170,155 Q 100,175 30,155 Z" fill="#F7D6D0" stroke="#5B7057"
+                  stroke-width="2" />
+                <path d="M 30,120 Q 100,135 170,120" fill="none" stroke="#FBEAE7" stroke-width="6" />
+
+                <!-- Top Cake Tier -->
+                <path d="M 50,75 Q 100,90 150,75 L 150,120 Q 100,135 50,120 Z" fill="#FDFBF7" stroke="#5B7057"
+                  stroke-width="2" />
+                <path d="M 50,75 Q 100,88 150,75" fill="none" stroke="#F7D6D0" stroke-width="8" />
+
+                <!-- Floral Frosting Accents -->
+                <circle cx="65" cy="118" r="5" fill="#F7D6D0" />
+                <circle cx="100" cy="122" r="6" fill="#F7D6D0" />
+                <circle cx="135" cy="118" r="5" fill="#F7D6D0" />
+
+                <!-- Candle Stick -->
+                <rect x="96" y="38" width="8" height="38" rx="2" fill="#F3E3A1" stroke="#5B7057" stroke-width="1.5" />
+                <!-- Candle Wick -->
+                <line x1="100" y1="38" x2="100" y2="28" stroke="#333" stroke-width="2" />
+
+                <!-- Candle Flame -->
+                <g id="candle-flame" class="flame">
+                  <path d="M 100,8 Q 107,20 100,28 Q 93,20 100,8 Z" fill="#FFA500" />
+                  <path d="M 100,13 Q 104,21 100,26 Q 96,21 100,13 Z" fill="#FFD700" />
+                </g>
+              </svg>
+            </div>
+
+            <div id="cake-celebration-message"
+              style="display:none; font-family:'Caveat', cursive; font-size:1.8rem; color:var(--sage-dark); margin-top:15px;">
+            </div>
+          </div>
+
+          <!-- Birthday Wish Board -->
+          <div class="wish-board-section">
+            <div class="wish-form-card">
+              <h3 class="form-title">Inscribe Thy Wishes for Hanim</h3>
+              <form id="guestbook-form">
+                <div class="form-group">
+                  <label class="form-label" for="wish-author-input">Your Name or Signature</label>
+                  <input type="text" class="form-input" id="wish-author-input"
+                    placeholder="e.g. Best Friend, Secret Admirer..." required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="wish-message-input">Your Birthday Note or Wish</label>
+                  <textarea class="form-textarea" id="wish-message-input"
+                    placeholder="Write a warm memory or wish for Hanim..." required></textarea>
+                </div>
+                <button type="submit" class="submit-wish-btn">Pin Wish onto Board ✨</button>
+              </form>
+            </div>
+
+            <div class="pinboard-canvas" id="pinboard-canvas"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: Finder / "Made for Hanim" Window -->
+    <div class="app-window" id="window-finder">
+      <div class="window-header">
+        <div class="window-title-group">
+          <span>🔍</span>
+          <span class="window-title-text">Outro - Just to Remind That This Made with Lob :)</span>
+        </div>
+        <div class="window-controls">
+          <div class="window-btn btn-min"></div>
+          <div class="window-btn btn-max"></div>
+          <div class="window-btn btn-close" title="Close">✕</div>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="finder-content">
+          <div class="finder-avatar">🌸</div>
+          <h2 class="finder-title">Happy Birthday Hanim!</h2>
+          <p class="finder-desc">
+            "Crafted with love, starlight, soft pink roses, and nostalgic desktop fairytale magic. May your birthday and
+            your coming year be as radiant, serene, and unforgettably sweet as you are."
+          </p>
+          <div style="font-size:0.85rem; color:var(--text-muted);">
+            Ready for GitHub Pages • Built with HTML5, CSS3, Web Audio API & Vanilla JS
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Full Letter Reading Modal -->
+  <div class="full-letter-modal" id="full-letter-modal">
+    <div class="parchment-scroll-card">
+      <div class="letter-date-stamp">The Tenth of September, MMXXVI</div>
+      <div class="letter-salutation">Dear Hanim,</div>
+      <div class="letter-body">
+        <p>
+          May the skies above you always remain gentle,
+          and may the sea carry away every sorrow that finds its way to your shore.
+        </p>
+        <p>
+          I hope life is kind to you,
+          in the quiet moments and in the days that ask a little more of you.
+          May you find reasons to smile in the smallest things,
+          and may there always be someone beside you when the world feels a little too vast.
+        </p>
+        <p>
+          I am grateful, in ways I seldom know how to say,
+          that somewhere along this long road of life,
+          our paths happened to cross.
+          There are people who merely pass through our days,
+          and there are those who, without trying,
+          make the days feel a little brighter.
+        </p>
+        <p>
+          You, somehow, are the latter.
+        </p>
+        <p>
+          So here is to another year beneath the same moon,
+          another chapter waiting to be written,
+          and countless sunsets yet to see.
+        </p>
+        <p>
+          May the world be gentle with you,
+          may your heart remain light,
+          and may you always know that your presence
+          has made this little corner of the world
+          a much warmer place.
+        </p>
+        <p>
+          Happy Birthday.
+          I hope this year brings you everything beautiful
+          that you have quietly wished for. 🌙
+        </p>
+      </div>
+      <div class="letter-divider">🌸 ✨ 🌸</div>
+      <div class="letter-signoff">With all my love & warmest wishes,</div>
+      <button class="close-letter-btn" id="close-letter-btn">Fold Back & Close</button>
+    </div>
+  </div>
+
+  <!-- Album Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-card">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" title="Close">✕</button>
+
+      <div class="lightbox-photo-side">
+        <img id="lightbox-img" src="assets/starlight.png" alt="Enlarged Memory Photo" />
+      </div>
+
+      <div class="lightbox-note-side">
+        <div class="lightbox-note-header">
+          <div class="lightbox-memory-title" id="lightbox-title">Memory Title</div>
+          <div class="lightbox-memory-date" id="lightbox-date">Date Stamp</div>
+        </div>
+
+        <div class="lightbox-memory-text" id="lightbox-text">
+          Handwritten memory note content...
+        </div>
+
+        <div class="lightbox-nav-row">
+          <button class="lightbox-nav-btn" id="lightbox-prev-btn">← Previous</button>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Use ← → arrow keys</span>
+          <button class="lightbox-nav-btn" id="lightbox-next-btn">Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
