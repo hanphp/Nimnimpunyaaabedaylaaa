@@ -484,22 +484,50 @@ function createPetalShower() {
 }
 
 /* ==========================================================================
-   7. WISH PINBOARD GUESTBOOK FOR HANIM
+   FIREBASE REALTIME DATABASE CLOUD CONFIGURATION & REALTIME SYNC
+   ========================================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyCsMdAGVv6cJ8oNNceJyT_WibTbNythmy0",
+  authDomain: "hanim-birthday-website.firebaseapp.com",
+  databaseURL: "https://hanim-birthday-website-default-rtdb.firebaseio.com",
+  projectId: "hanim-birthday-website",
+  storageBucket: "hanim-birthday-website.firebasestorage.app",
+  messagingSenderId: "865999777659",
+  appId: "1:865999777659:web:b64fad72131c417202d7de",
+  measurementId: "G-CGVCTB3XJ0"
+};
+
+let db = null;
+let rtdb = null;
+try {
+  if (typeof firebase !== 'undefined' && firebase.apps && !firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  if (typeof firebase !== 'undefined' && firebase.database) {
+    db = firebase.database();
+    rtdb = firebase.database();
+  }
+} catch (err) {
+  console.warn("Firebase Realtime Database initialization notice:", err);
+}
+
+/* ==========================================================================
+   7. WISH PINBOARD GUESTBOOK FOR HANIM (REALTIME DATABASE + FALLBACK)
    ========================================================================== */
 const defaultHanimWishes = [
   {
-    name: "Try 1",
+    name: "Aria & Willow",
     message: "Happy Birthday Hanim! May your day be bathed in golden sunlight, pink roses, and infinite joy! ✨🌸",
     date: "September 10"
   },
   {
-    name: "Try 2",
+    name: "Clara",
     message: "Wishing you the sweetest year ahead Hanim! May all your dreams unfold into beautiful reality! 💖",
     date: "September 10"
   },
   {
-    name: "Try 3",
-    message: "Happy Birthday Hanim!",
+    name: "Oliver",
+    message: "Happy Birthday Hanim! Stay whimsical, radiant, and happy always!",
     date: "September 10"
   }
 ];
@@ -510,48 +538,114 @@ function initWishPinboard() {
 
   if (!container) return;
 
-  let wishes = JSON.parse(localStorage.getItem('birthday_wishes_hanim') || 'null');
-  if (!wishes || wishes.length === 0) {
-    wishes = defaultHanimWishes;
-    localStorage.setItem('birthday_wishes_hanim', JSON.stringify(wishes));
-  }
-
-  function renderWishes() {
-    container.innerHTML = wishes.map(w => `
+  function renderWishesList(wishesList) {
+    container.innerHTML = wishesList.map(w => `
       <div class="pinned-sticky-note">
         <div class="pushpin-dot"></div>
-        <div class="sticky-author">${escapeHTML(w.name)}</div>
-        <div class="sticky-content">"${escapeHTML(w.message)}"</div>
+        <div class="sticky-author">${escapeHTML(w.name || 'Anonymous')}</div>
+        <div class="sticky-content">"${escapeHTML(w.message || '')}"</div>
       </div>
     `).join('');
   }
 
   function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g,
+    return String(str || '').replace(/[&<>'"]/g,
       tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
     );
   }
 
+  function showToastNotification(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'wish-toast-notification';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3500);
+  }
+
+  // 1. Real-time sync with Firebase Realtime Database (/wishes node)
+  let isRtdbConnected = false;
+  if (rtdb && firebaseConfig.projectId !== "YOUR_PROJECT_ID") {
+    try {
+      rtdb.ref('wishes').on('value', (snapshot) => {
+        isRtdbConnected = true;
+        const cloudWishes = [];
+        const data = snapshot.val();
+
+        if (data) {
+          Object.keys(data).forEach((key) => {
+            cloudWishes.push({
+              id: key,
+              name: data[key].name,
+              message: data[key].message,
+              timestamp: data[key].timestamp
+            });
+          });
+        }
+
+        if (cloudWishes.length > 0) {
+          renderWishesList(cloudWishes);
+        } else {
+          renderWishesList(defaultHanimWishes);
+        }
+      }, (error) => {
+        console.warn("Realtime Database notice (using fallback until databaseURL is set):", error);
+        loadLocalWishes();
+      });
+    } catch (e) {
+      console.warn("Realtime Database exception:", e);
+      loadLocalWishes();
+    }
+  } else {
+    loadLocalWishes();
+  }
+
+  function loadLocalWishes() {
+    let localWishes = JSON.parse(localStorage.getItem('birthday_wishes_hanim') || 'null');
+    if (!localWishes || localWishes.length === 0) {
+      localWishes = defaultHanimWishes;
+      localStorage.setItem('birthday_wishes_hanim', JSON.stringify(localWishes));
+    }
+    renderWishesList(localWishes);
+  }
+
+  // 2. Form submission handler
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const nameInput = document.getElementById('wish-author-input');
       const msgInput = document.getElementById('wish-message-input');
 
-      const name = nameInput.value.trim();
-      const message = msgInput.value.trim();
+      const nameValue = nameInput.value.trim();
+      const wishValue = msgInput.value.trim();
 
-      if (!name || !message) return;
+      if (!nameValue || !wishValue) return;
 
-      wishes.unshift({ name, message, date: "Just now" });
-      localStorage.setItem('birthday_wishes_hanim', JSON.stringify(wishes));
-
-      renderWishes();
-
-      nameInput.value = '';
-      msgInput.value = '';
+      if (rtdb && isRtdbConnected && firebaseConfig.projectId !== "YOUR_PROJECT_ID") {
+        rtdb.ref('wishes').push({
+          name: nameValue,
+          message: wishValue,
+          timestamp: Date.now()
+        }).then(() => {
+          showToastNotification("Your wish has been pinned with love! ✨");
+          nameInput.value = '';
+          msgInput.value = '';
+        }).catch((err) => {
+          console.error("Realtime database push error:", err);
+          fallbackSaveLocal(nameValue, wishValue);
+        });
+      } else {
+        fallbackSaveLocal(nameValue, wishValue);
+      }
     });
   }
 
-  renderWishes();
+  function fallbackSaveLocal(nameValue, wishValue) {
+    let localWishes = JSON.parse(localStorage.getItem('birthday_wishes_hanim') || '[]');
+    localWishes.push({ name: nameValue, message: wishValue, date: "Just now" });
+    localStorage.setItem('birthday_wishes_hanim', JSON.stringify(localWishes));
+    renderWishesList(localWishes);
+    showToastNotification("Your wish has been pinned with love! ✨");
+    if (document.getElementById('wish-author-input')) document.getElementById('wish-author-input').value = '';
+    if (document.getElementById('wish-message-input')) document.getElementById('wish-message-input').value = '';
+  }
 }

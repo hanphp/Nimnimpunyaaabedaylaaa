@@ -48,13 +48,20 @@
 
 html, body {
   width: 100%;
-  height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
   overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--text-main);
   background-color: var(--sage-dark);
   -webkit-font-smoothing: antialiased;
   user-select: none;
+}
+
+/* Touch target and tap zoom control */
+button, .window-btn, .desktop-icon-card, .taskbar-menu-item, .audio-widget, .wax-seal-btn, .close-letter-btn, .lightbox-nav-btn, .lightbox-close-btn, .submit-wish-btn, .welcome-btn {
+  touch-action: manipulation;
 }
 
 /* Wallpaper Background Body */
@@ -333,9 +340,11 @@ body {
 .desktop-viewport {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 44px);
+  height: calc(100dvh - 44px);
+  min-height: calc(100dvh - 44px);
   margin-top: 44px;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* --- VIEW 1: Desktop Landing Page --- */
@@ -1277,11 +1286,39 @@ body {
   border: 3px solid var(--sage-dark);
   border-radius: var(--radius-md);
   padding: 20px;
-  min-height: 380px;
+  min-height: 360px;
+  max-height: 520px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 18px;
   box-shadow: inset 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.wish-toast-notification {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--baby-pink), var(--baby-pink-dark));
+  color: var(--sage-dark);
+  border: 2px solid var(--sage-dark);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  z-index: 10000;
+  animation: toastFadeInOut 3.5s forwards ease-in-out;
+}
+
+@keyframes toastFadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
 }
 
 .pinned-sticky-note {
@@ -1378,26 +1415,235 @@ body {
   line-height: 1.5;
 }
 
-/* Responsive Rules for iPhone & Mobile */
-@media (max-width: 800px) {
-  .desktop-icons-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+/* Responsive Rules for iPhone & Mobile Browsers */
+@media (max-width: 768px) {
+  /* 1. Landing View & Hero Title Padding */
+  .landing-view {
+    padding: 10px 14px 18px 14px;
+    justify-content: space-evenly;
   }
 
-  .wish-board-section {
-    grid-template-columns: 1fr;
+  .landing-header {
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+
+  .storybook-title {
+    font-size: clamp(2.4rem, 6.5vw, 3.4rem);
+    margin-bottom: 4px;
+  }
+
+  .storybook-subtitle {
+    font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+    line-height: 1.25;
+  }
+
+  /* 2. Home Page Card Grid Scaling */
+  .desktop-icons-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 380px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .desktop-icon-card {
+    padding: 10px 8px 10px 8px;
+    min-height: 84px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  }
+
+  .icon-badge {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .icon-title {
+    font-size: 0.95rem;
+    line-height: 1.1;
+  }
+
+  .icon-subtitle {
+    font-size: 0.68rem;
+    margin-top: 2px;
+  }
+
+  /* 3. Window Modals & Sizing */
+  .app-window {
+    width: min(94vw, 440px);
+    max-height: 88dvh;
+    height: auto;
+    border-radius: 16px;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  .app-window.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .window-header {
+    height: 40px;
+    padding: 0 12px;
+  }
+
+  .window-title-text {
+    font-size: 0.98rem;
+  }
+
+  /* Letter Envelope View */
+  .envelope-wrapper {
+    width: min(92vw, 360px);
+    height: 250px;
+  }
+
+  .envelope-letter-preview {
+    height: 210px;
+    padding: 16px;
+  }
+
+  .letter-preview-heading { font-size: 1.8rem; }
+  .letter-preview-snippet { font-size: 1.05rem; }
+
+  .wax-seal-btn {
+    width: 64px;
+    height: 64px;
+    top: 125px;
+    font-size: 22px;
+  }
+
+  .parchment-scroll-card {
+    width: min(94vw, 440px);
+    max-height: 88dvh;
+    padding: 24px 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Album Scrapbook Lightbox View ("The Forest Fawn" / Bambi) */
+  .album-view-container {
+    padding: 20px 12px;
+  }
+
+  .scrapbook-header {
+    padding: 12px;
+    margin-bottom: 18px;
+  }
+
+  .scrapbook-headline { font-size: 2.8rem; }
+  .scrapbook-subtitle { font-size: 0.72rem; }
+
+  .album-photos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+  }
+
+  .polaroid-frame {
+    padding: 8px 8px 16px 8px;
+  }
+
+  .polaroid-img-wrapper {
+    height: 140px;
+  }
+
+  .polaroid-caption {
+    font-size: 1.05rem;
+    margin-top: 8px;
+  }
+
+  .lightbox-modal {
+    padding: 12px;
   }
 
   .lightbox-card {
     flex-direction: column;
-    max-height: 90vh;
+    width: min(94vw, 440px);
+    max-height: 88dvh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 16px;
+  }
+
+  .lightbox-photo-side {
+    padding: 12px;
   }
 
   .lightbox-photo-side img {
-    max-height: 40vh;
+    max-height: 35dvh;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 12px;
   }
 
-  .taskbar-menu { display: none; }
+  .lightbox-note-side {
+    padding: 18px 16px;
+    border-left: none;
+    border-top: 2px dashed var(--baby-pink-dark);
+  }
+
+  .lightbox-memory-title { font-size: 1.4rem; }
+  .lightbox-memory-text { font-size: 1.25rem; }
+
+  .lightbox-nav-row span {
+    display: none; /* Hide desktop arrow key hint on mobile */
+  }
+
+  .lightbox-nav-btn {
+    min-height: 44px;
+    min-width: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    touch-action: manipulation;
+  }
+
+  /* Calendar & Birthday Cake View */
+  .calendar-view-container {
+    padding: 18px 12px;
+  }
+
+  .calendar-title { font-size: 1.9rem; }
+
+  .calendar-grid-card {
+    padding: 12px;
+    margin-bottom: 15px;
+    max-width: 100%;
+  }
+
+  .calendar-month-title {
+    font-size: 1.9rem;
+    margin-bottom: 8px;
+  }
+
+  .calendar-table th, .calendar-table td {
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+
+  .cake-section-card {
+    padding: 16px 10px;
+    margin-bottom: 15px;
+  }
+
+  .cake-instruction {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .cake-svg {
+    width: 160px;
+    height: 140px;
+  }
+
+  .wish-board-section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .taskbar-menu {
+    display: none;
+  }
 }
