@@ -24,32 +24,38 @@
   --text-main: #334031;
   --text-muted: #62725F;
   --burgundy: #8B3A4A;
-  
+
   --shadow-soft: 0 10px 30px rgba(91, 112, 87, 0.15);
   --shadow-elevated: 0 18px 45px rgba(51, 64, 49, 0.22);
   --shadow-window: 0 25px 65px rgba(35, 48, 33, 0.35);
-  
+
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
-  
+
   --transition-fast: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
   --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* --- Global Resets & Base Styling --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100dvh;
   min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow: hidden;
   overflow-x: hidden;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -60,14 +66,24 @@ html, body {
 }
 
 /* Touch target and tap zoom control */
-button, .window-btn, .desktop-icon-card, .taskbar-menu-item, .audio-widget, .wax-seal-btn, .close-letter-btn, .lightbox-nav-btn, .lightbox-close-btn, .submit-wish-btn, .welcome-btn {
+button,
+.window-btn,
+.desktop-icon-card,
+.taskbar-menu-item,
+.audio-widget,
+.wax-seal-btn,
+.close-letter-btn,
+.lightbox-nav-btn,
+.lightbox-close-btn,
+.submit-wish-btn,
+.welcome-btn {
   touch-action: manipulation;
 }
 
 /* Wallpaper Background Body */
 body {
   background-image: radial-gradient(circle at 50% 30%, rgba(251, 234, 231, 0.2) 0%, rgba(91, 112, 87, 0.75) 100%),
-                    url('../assets/wallpaper.jpg');
+    url('../assets/wallpaper.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -80,16 +96,27 @@ body {
   inset: 0;
   pointer-events: none;
   background: radial-gradient(circle at 25% 20%, rgba(254, 243, 199, 0.25) 0%, transparent 60%),
-              radial-gradient(circle at 75% 80%, rgba(247, 214, 208, 0.2) 0%, transparent 55%);
+    radial-gradient(circle at 75% 80%, rgba(247, 214, 208, 0.2) 0%, transparent 55%);
   mix-blend-mode: soft-light;
   z-index: 2;
   animation: floatSunlight 14s ease-in-out infinite alternate;
 }
 
 @keyframes floatSunlight {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
-  50% { transform: scale(1.04) translate(-12px, 12px); opacity: 1; }
-  100% { transform: scale(1.02) translate(10px, -8px); opacity: 0.85; }
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.04) translate(-12px, 12px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.02) translate(10px, -8px);
+    opacity: 0.85;
+  }
 }
 
 /* --- iOS Safe Welcome Prompt Overlay --- */
@@ -129,8 +156,15 @@ body {
 }
 
 @keyframes bounceIn {
-  0% { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .welcome-flower {
@@ -140,8 +174,15 @@ body {
 }
 
 @keyframes pulseHeart {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.18); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.18);
+  }
 }
 
 .welcome-title {
@@ -194,7 +235,7 @@ body {
   justify-content: space-between;
   padding: 0 18px;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .taskbar-brand {
@@ -269,7 +310,7 @@ body {
   padding: 4px 14px 4px 6px;
   border-radius: 20px;
   border: 1.5px solid var(--sage-dark);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transition: var(--transition-normal);
   cursor: pointer;
 }
@@ -304,7 +345,9 @@ body {
 }
 
 @keyframes spinVinyl {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .audio-label {
@@ -327,13 +370,26 @@ body {
   height: 4px;
 }
 
-.playing .sound-bar:nth-child(1) { animation: wave 0.8s ease-in-out infinite alternate; }
-.playing .sound-bar:nth-child(2) { animation: wave 0.6s ease-in-out 0.2s infinite alternate; }
-.playing .sound-bar:nth-child(3) { animation: wave 0.9s ease-in-out 0.4s infinite alternate; }
+.playing .sound-bar:nth-child(1) {
+  animation: wave 0.8s ease-in-out infinite alternate;
+}
+
+.playing .sound-bar:nth-child(2) {
+  animation: wave 0.6s ease-in-out 0.2s infinite alternate;
+}
+
+.playing .sound-bar:nth-child(3) {
+  animation: wave 0.9s ease-in-out 0.4s infinite alternate;
+}
 
 @keyframes wave {
-  0% { height: 3px; }
-  100% { height: 12px; }
+  0% {
+    height: 3px;
+  }
+
+  100% {
+    height: 12px;
+  }
 }
 
 /* --- Main Desktop Viewport --- */
@@ -371,7 +427,7 @@ body {
   font-size: clamp(3.4rem, 7.5vw, 6rem);
   color: var(--cream);
   text-shadow: 0 4px 18px rgba(51, 64, 49, 0.8),
-               0 0 35px rgba(247, 214, 208, 0.7);
+    0 0 35px rgba(247, 214, 208, 0.7);
   line-height: 1.1;
   margin-bottom: 8px;
 }
@@ -414,16 +470,17 @@ body {
   padding: 16px 10px 14px 10px;
   cursor: pointer;
   backdrop-filter: blur(8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              background 0.3s ease;
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
-.desktop-icon-card:hover, .desktop-icon-card:active {
+.desktop-icon-card:hover,
+.desktop-icon-card:active {
   transform: translateY(-8px) scale(1.05);
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 18px 35px rgba(0,0,0,0.3), 0 0 20px rgba(247, 214, 208, 0.5);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(247, 214, 208, 0.5);
 }
 
 .icon-badge {
@@ -437,7 +494,7 @@ body {
   justify-content: center;
   font-size: 28px;
   margin-bottom: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -493,6 +550,19 @@ body {
   z-index: 40;
 }
 
+.modal-content,
+.window,
+.popup-content {
+  max-height: 82dvh !important;
+  /* leaves room at top & bottom */
+  overflow-y: auto !important;
+  /* lets her scroll smoothly if content is long */
+  -webkit-overflow-scrolling: touch;
+  /* smooth scrolling on iOS */
+  padding-bottom: 30px !important;
+  /* extra padding so the bottom never touches the edge */
+}
+
 .modal-backdrop-blur.active {
   opacity: 1;
   pointer-events: auto;
@@ -539,7 +609,7 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -548,9 +618,18 @@ body {
   font-weight: bold;
 }
 
-.window-btn.btn-close { background: #E74C3C; color: white; }
-.window-btn.btn-min { background: #F1C40F; }
-.window-btn.btn-max { background: #2ECC71; }
+.window-btn.btn-close {
+  background: #E74C3C;
+  color: white;
+}
+
+.window-btn.btn-min {
+  background: #F1C40F;
+}
+
+.window-btn.btn-max {
+  background: #2ECC71;
+}
 
 .window-body {
   flex: 1;
@@ -560,9 +639,18 @@ body {
 }
 
 /* Scrollbars */
-.window-body::-webkit-scrollbar { width: 9px; }
-.window-body::-webkit-scrollbar-track { background: var(--cream-dark); }
-.window-body::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 4px; }
+.window-body::-webkit-scrollbar {
+  width: 9px;
+}
+
+.window-body::-webkit-scrollbar-track {
+  background: var(--cream-dark);
+}
+
+.window-body::-webkit-scrollbar-thumb {
+  background: var(--sage);
+  border-radius: 4px;
+}
 
 /* --- VIEW 2: Interactive Wax-Seal Letter --- */
 .envelope-view-container {
@@ -590,7 +678,7 @@ body {
   background: var(--sage);
   border: 2px solid var(--sage-dark);
   border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
   transform-style: preserve-3d;
 }
 
@@ -612,7 +700,7 @@ body {
   border: 2px dashed var(--baby-pink-dark);
   border-radius: 8px;
   padding: 24px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.8s cubic-bezier(0.34, 1.25, 0.64, 1), z-index 0.1s ease;
   z-index: 2;
   overflow: hidden;
@@ -648,8 +736,10 @@ body {
 
 .pocket-left {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 0; height: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
   border-left: 270px solid var(--sage-dark);
   border-top: 165px solid transparent;
   border-bottom: 165px solid var(--sage-dark);
@@ -659,8 +749,10 @@ body {
 
 .pocket-right {
   position: absolute;
-  bottom: 0; right: 0;
-  width: 0; height: 0;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
   border-right: 270px solid var(--sage-dark);
   border-top: 165px solid transparent;
   border-bottom: 165px solid var(--sage-dark);
@@ -670,7 +762,9 @@ body {
 
 .pocket-bottom {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 0;
   border-bottom: 175px solid var(--sage);
   border-left: 270px solid transparent;
@@ -682,7 +776,9 @@ body {
 /* Top 3D Flap */
 .envelope-top-flap {
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 0;
   border-top: 190px solid var(--sage-dark);
   border-left: 270px solid transparent;
@@ -709,7 +805,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle, #A33B4F 0%, #6D212F 100%);
   border: 3px solid var(--gold);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
   z-index: 6;
   cursor: pointer;
   display: flex;
@@ -724,7 +820,7 @@ body {
 
 .wax-seal-btn:hover {
   transform: translate(-50%, -50%) scale(1.12);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.45), 0 0 15px rgba(247, 214, 208, 0.6);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 15px rgba(247, 214, 208, 0.6);
 }
 
 .envelope-wrapper.open .wax-seal-btn {
@@ -768,7 +864,7 @@ body {
   border: 3px solid var(--sage-dark);
   border-radius: 18px;
   padding: 40px clamp(20px, 5vw, 50px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   position: relative;
   overflow-y: auto;
   transform: scale(0.92);
@@ -837,13 +933,13 @@ body {
   font-weight: 700;
   font-size: 1.15rem;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   transition: var(--transition-fast);
 }
 
 .close-letter-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 /* --- VIEW 3: "Same Energy" Scrapbook Album --- */
@@ -895,22 +991,36 @@ body {
   background: #FFFDF7;
   padding: 14px 14px 28px 14px;
   border-radius: 6px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   border: 1px solid #EAE5D9;
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
   position: relative;
 }
 
-.polaroid-frame:nth-child(1) { transform: rotate(-3deg); }
-.polaroid-frame:nth-child(2) { transform: rotate(4deg); }
-.polaroid-frame:nth-child(3) { transform: rotate(-2deg); }
-.polaroid-frame:nth-child(4) { transform: rotate(3deg); }
-.polaroid-frame:nth-child(5) { transform: rotate(3deg); }
+.polaroid-frame:nth-child(1) {
+  transform: rotate(-3deg);
+}
+
+.polaroid-frame:nth-child(2) {
+  transform: rotate(4deg);
+}
+
+.polaroid-frame:nth-child(3) {
+  transform: rotate(-2deg);
+}
+
+.polaroid-frame:nth-child(4) {
+  transform: rotate(3deg);
+}
+
+.polaroid-frame:nth-child(5) {
+  transform: rotate(3deg);
+}
 
 .polaroid-frame:hover {
   transform: translateY(-12px) scale(1.05) rotate(0deg) !important;
-  box-shadow: 0 22px 45px rgba(0,0,0,0,0.28);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0, 0.28);
   z-index: 20;
 }
 
@@ -965,7 +1075,7 @@ body {
   background: var(--cream);
   border: 3px solid var(--sage-dark);
   border-radius: 18px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: relative;
 }
@@ -1139,13 +1249,19 @@ body {
 .calendar-table td.birthday-cell::after {
   content: '💖';
   position: absolute;
-  top: -8px; right: -6px;
+  top: -8px;
+  right: -6px;
   font-size: 14px;
 }
 
 @keyframes pulseBirthday {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.15); }
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.15);
+  }
 }
 
 /* Interactive Cottagecore Cake & Candle Blow-Out */
@@ -1177,7 +1293,7 @@ body {
 .cake-svg {
   width: 220px;
   height: 200px;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.12));
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.12));
 }
 
 /* Flickering Flame Animation */
@@ -1187,8 +1303,15 @@ body {
 }
 
 @keyframes flickerFlame {
-  0% { transform: scale(1) rotate(-2deg); opacity: 1; }
-  100% { transform: scale(1.18) rotate(3deg); opacity: 0.85; }
+  0% {
+    transform: scale(1) rotate(-2deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.18) rotate(3deg);
+    opacity: 0.85;
+  }
 }
 
 .flame.extinguished {
@@ -1209,8 +1332,15 @@ body {
 }
 
 @keyframes riseSmoke {
-  0% { transform: translate(-50%, 0) scale(0.5); opacity: 0.8; }
-  100% { transform: translate(-50%, -90px) scale(3.5); opacity: 0; }
+  0% {
+    transform: translate(-50%, 0) scale(0.5);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-50%, -90px) scale(3.5);
+    opacity: 0;
+  }
 }
 
 /* Wish Board & Form */
@@ -1236,7 +1366,9 @@ body {
   margin-bottom: 14px;
 }
 
-.form-group { margin-bottom: 14px; }
+.form-group {
+  margin-bottom: 14px;
+}
 
 .form-label {
   display: block;
@@ -1246,7 +1378,8 @@ body {
   margin-bottom: 4px;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--sage-light);
@@ -1273,7 +1406,7 @@ body {
   font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: var(--transition-fast);
 }
 
@@ -1293,7 +1426,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 18px;
-  box-shadow: inset 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .wish-toast-notification {
@@ -1309,28 +1442,48 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   font-size: 1.15rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   z-index: 10000;
   animation: toastFadeInOut 3.5s forwards ease-in-out;
 }
 
 @keyframes toastFadeInOut {
-  0% { opacity: 0; transform: translate(-50%, 20px); }
-  15% { opacity: 1; transform: translate(-50%, 0); }
-  85% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, -20px); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
 }
 
 .pinned-sticky-note {
   background: var(--baby-pink-light);
   border-radius: 4px;
   padding: 14px 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.14);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.14);
   position: relative;
 }
 
-.pinned-sticky-note:nth-child(odd) { transform: rotate(-2deg); }
-.pinned-sticky-note:nth-child(even) { transform: rotate(3deg); }
+.pinned-sticky-note:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.pinned-sticky-note:nth-child(even) {
+  transform: rotate(3deg);
+}
 
 .pushpin-dot {
   position: absolute;
@@ -1341,7 +1494,7 @@ body {
   height: 13px;
   border-radius: 50%;
   background: var(--sage-dark);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .sticky-author {
@@ -1378,8 +1531,15 @@ body {
 }
 
 @keyframes fallPetal {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* --- VIEW 5: Finder / "About Hanim" Modal --- */
@@ -1416,11 +1576,29 @@ body {
 }
 
 /* Responsive Rules for iPhone & Mobile Browsers */
-@media (max-width: 768px) {
-  /* 1. Landing View & Hero Title Padding */
-  .landing-view {
-    padding: 10px 14px 18px 14px;
-    justify-content: space-evenly;
+@media (max-width: 600px) {
+
+  /* 1. Shrink title spacing */
+  .title,
+  h1,
+  .hero-title {
+    font-size: 2rem !important;
+    /* shrink the big text so it doesn't push cards down */
+    margin: 8px 0 !important;
+  }
+
+  @media (max-width: 600px) {
+
+    .album-hint,
+    .arrow-keys-text {
+      display: none !important;
+    }
+  }
+
+  .subtitle,
+  .hero-subtitle {
+    font-size: 0.85rem !important;
+    margin-bottom: 12px !important;
   }
 
   .landing-header {
@@ -1450,200 +1628,248 @@ body {
   .desktop-icon-card {
     padding: 10px 8px 10px 8px;
     min-height: 84px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   }
 
-  .icon-badge {
-    width: 46px;
-    height: 46px;
-    font-size: 22px;
-    margin-bottom: 4px;
+
+  .card,
+  .menu-card,
+  .icon-card {
+    padding: 8px !important;
   }
 
-  .icon-title {
-    font-size: 0.95rem;
-    line-height: 1.1;
+  .card img,
+  .menu-card img,
+  .icon-card img {
+    width: 42px !important;
+    /* smaller icons */
+    height: 42px !important;
   }
+}
 
-  .icon-subtitle {
-    font-size: 0.68rem;
-    margin-top: 2px;
-  }
+/* 2. Compact the 4 cards */
+.icon-grid,
+.menu-grid,
+.cards-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  /* 2 columns */
+  gap: 8px !important;
+  /* smaller gap between cards */
+  padding: 0 16px 16px !important;
+  max-width: 360px !important;
+  margin: 0 auto !important;
+}
 
-  /* 3. Window Modals & Sizing */
-  .app-window {
-    width: min(94vw, 440px);
-    max-height: 88dvh;
-    height: auto;
-    border-radius: 16px;
-    transform: translate(-50%, -50%) scale(0.95);
-  }
+.icon-badge {
+  width: 46px;
+  height: 46px;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
 
-  .app-window.active {
-    transform: translate(-50%, -50%) scale(1);
-  }
+.icon-title {
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
 
-  .window-header {
-    height: 40px;
-    padding: 0 12px;
-  }
+.icon-subtitle {
+  font-size: 0.68rem;
+  margin-top: 2px;
+}
 
-  .window-title-text {
-    font-size: 0.98rem;
-  }
+/* 3. Window Modals & Sizing */
+.app-window {
+  width: min(94vw, 440px);
+  max-height: 88dvh;
+  height: auto;
+  border-radius: 16px;
+  transform: translate(-50%, -50%) scale(0.95);
+}
 
-  /* Letter Envelope View */
-  .envelope-wrapper {
-    width: min(92vw, 360px);
-    height: 250px;
-  }
+.app-window.active {
+  transform: translate(-50%, -50%) scale(1);
+}
 
-  .envelope-letter-preview {
-    height: 210px;
-    padding: 16px;
-  }
+.window-header {
+  height: 40px;
+  padding: 0 12px;
+}
 
-  .letter-preview-heading { font-size: 1.8rem; }
-  .letter-preview-snippet { font-size: 1.05rem; }
+.window-title-text {
+  font-size: 0.98rem;
+}
 
-  .wax-seal-btn {
-    width: 64px;
-    height: 64px;
-    top: 125px;
-    font-size: 22px;
-  }
+/* Letter Envelope View */
+.envelope-wrapper {
+  width: min(92vw, 360px);
+  height: 250px;
+}
 
-  .parchment-scroll-card {
-    width: min(94vw, 440px);
-    max-height: 88dvh;
-    padding: 24px 18px;
-    -webkit-overflow-scrolling: touch;
-  }
+.envelope-letter-preview {
+  height: 210px;
+  padding: 16px;
+}
 
-  /* Album Scrapbook Lightbox View ("The Forest Fawn" / Bambi) */
-  .album-view-container {
-    padding: 20px 12px;
-  }
+.letter-preview-heading {
+  font-size: 1.8rem;
+}
 
-  .scrapbook-header {
-    padding: 12px;
-    margin-bottom: 18px;
-  }
+.letter-preview-snippet {
+  font-size: 1.05rem;
+}
 
-  .scrapbook-headline { font-size: 2.8rem; }
-  .scrapbook-subtitle { font-size: 0.72rem; }
+.wax-seal-btn {
+  width: 64px;
+  height: 64px;
+  top: 125px;
+  font-size: 22px;
+}
 
-  .album-photos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-    margin-top: 15px;
-    margin-bottom: 25px;
-  }
+.parchment-scroll-card {
+  width: min(94vw, 440px);
+  max-height: 88dvh;
+  padding: 24px 18px;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .polaroid-frame {
-    padding: 8px 8px 16px 8px;
-  }
+/* Album Scrapbook Lightbox View ("The Forest Fawn" / Bambi) */
+.album-view-container {
+  padding: 20px 12px;
+}
 
-  .polaroid-img-wrapper {
-    height: 140px;
-  }
+.scrapbook-header {
+  padding: 12px;
+  margin-bottom: 18px;
+}
 
-  .polaroid-caption {
-    font-size: 1.05rem;
-    margin-top: 8px;
-  }
+.scrapbook-headline {
+  font-size: 2.8rem;
+}
 
-  .lightbox-modal {
-    padding: 12px;
-  }
+.scrapbook-subtitle {
+  font-size: 0.72rem;
+}
 
-  .lightbox-card {
-    flex-direction: column;
-    width: min(94vw, 440px);
-    max-height: 88dvh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 16px;
-  }
+.album-photos-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
 
-  .lightbox-photo-side {
-    padding: 12px;
-  }
+.polaroid-frame {
+  padding: 8px 8px 16px 8px;
+}
 
-  .lightbox-photo-side img {
-    max-height: 35dvh;
-    width: 100%;
-    object-fit: contain;
-    border-radius: 12px;
-  }
+.polaroid-img-wrapper {
+  height: 140px;
+}
 
-  .lightbox-note-side {
-    padding: 18px 16px;
-    border-left: none;
-    border-top: 2px dashed var(--baby-pink-dark);
-  }
+.polaroid-caption {
+  font-size: 1.05rem;
+  margin-top: 8px;
+}
 
-  .lightbox-memory-title { font-size: 1.4rem; }
-  .lightbox-memory-text { font-size: 1.25rem; }
+.lightbox-modal {
+  padding: 12px;
+}
 
-  .lightbox-nav-row span {
-    display: none; /* Hide desktop arrow key hint on mobile */
-  }
+.lightbox-card {
+  flex-direction: column;
+  width: min(94vw, 440px);
+  max-height: 88dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 16px;
+}
 
-  .lightbox-nav-btn {
-    min-height: 44px;
-    min-width: 105px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    touch-action: manipulation;
-  }
+.lightbox-photo-side {
+  padding: 12px;
+}
 
-  /* Calendar & Birthday Cake View */
-  .calendar-view-container {
-    padding: 18px 12px;
-  }
+.lightbox-photo-side img {
+  max-height: 35dvh;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
 
-  .calendar-title { font-size: 1.9rem; }
+.lightbox-note-side {
+  padding: 18px 16px;
+  border-left: none;
+  border-top: 2px dashed var(--baby-pink-dark);
+}
 
-  .calendar-grid-card {
-    padding: 12px;
-    margin-bottom: 15px;
-    max-width: 100%;
-  }
+.lightbox-memory-title {
+  font-size: 1.4rem;
+}
 
-  .calendar-month-title {
-    font-size: 1.9rem;
-    margin-bottom: 8px;
-  }
+.lightbox-memory-text {
+  font-size: 1.25rem;
+}
 
-  .calendar-table th, .calendar-table td {
-    padding: 6px 4px;
-    font-size: 0.8rem;
-  }
+.lightbox-nav-row span {
+  display: none;
+  /* Hide desktop arrow key hint on mobile */
+}
 
-  .cake-section-card {
-    padding: 16px 10px;
-    margin-bottom: 15px;
-  }
+.lightbox-nav-btn {
+  min-height: 44px;
+  min-width: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  touch-action: manipulation;
+}
 
-  .cake-instruction {
-    font-size: 1.25rem;
-    margin-bottom: 12px;
-  }
+/* Calendar & Birthday Cake View */
+.calendar-view-container {
+  padding: 18px 12px;
+}
 
-  .cake-svg {
-    width: 160px;
-    height: 140px;
-  }
+.calendar-title {
+  font-size: 1.9rem;
+}
 
-  .wish-board-section {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+.calendar-grid-card {
+  padding: 12px;
+  margin-bottom: 15px;
+  max-width: 100%;
+}
 
-  .taskbar-menu {
-    display: none;
-  }
+.calendar-month-title {
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.calendar-table th,
+.calendar-table td {
+  padding: 6px 4px;
+  font-size: 0.8rem;
+}
+
+.cake-section-card {
+  padding: 16px 10px;
+  margin-bottom: 15px;
+}
+
+.cake-instruction {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.cake-svg {
+  width: 160px;
+  height: 140px;
+}
+
+.wish-board-section {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.taskbar-menu {
+  display: none;
 }
